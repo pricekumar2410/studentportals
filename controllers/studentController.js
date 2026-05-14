@@ -21,6 +21,8 @@ exports.getStudentPortal = async (req, res) => {
             classes: students,
             sections: sections,
             searchQuery: '',
+            filterClass: '',
+            filterSection: '',
         });
     } catch (error) {
         console.error('Error in getStudentPortal:', error);

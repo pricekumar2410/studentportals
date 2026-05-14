@@ -61,8 +61,8 @@
 
                 <!-- Awards Table -->
                 <section class="awards-section">
-                    <% const showActions=false; // Hide edit/delete for student view let awardsToDisplay=awards; %>
-                        <%- include('../partials/awardsTable', { awards: awardsToDisplay, showActions: showActions }) %>
+                    <% const showActions=false; %>
+                        <%- include('../partials/awardsTable', { awards: awards, showActions: showActions }) %>
                 </section>
 
                 <!-- Statistics -->
