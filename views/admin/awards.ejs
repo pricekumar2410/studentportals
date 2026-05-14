@@ -1,0 +1,82 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Flash Messages -->
+            <%- include('../partials/messages') %>
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">🏆 Manage Awards</h1>
+                    <div class="header-actions">
+                        <a href="/admin" class="btn btn-secondary">Back to Dashboard</a>
+                        <a href="/admin/awards/new" class="btn btn-primary">➕ Add New Award</a>
+                    </div>
+                </div>
+
+                <!-- Awards Table -->
+                <section class="awards-section">
+                    <div class="table-container">
+                        <% if (awards && awards.length> 0) { %>
+                            <table class="awards-table">
+                                <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Class</th>
+                                        <th>Roll Number</th>
+                                        <th>Section</th>
+                                        <th>Award Name</th>
+                                        <th>Issued Date</th>
+                                        <th>Issued By</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% awards.forEach((award)=> { %>
+                                        <tr class="table-row">
+                                            <td><strong>
+                                                    <%= award.student.name %>
+                                                </strong></td>
+                                            <td>
+                                                <%= award.student.class %>
+                                            </td>
+                                            <td>
+                                                <%= award.student.rollNumber %>
+                                            </td>
+                                            <td>
+                                                <%= award.student.section %>
+                                            </td>
+                                            <td><span class="award-badge">
+                                                    <%= award.awardName %>
+                                                </span></td>
+                                            <td>
+                                                <%= new Date(award.issuedDate).toLocaleDateString() %>
+                                            </td>
+                                            <td>
+                                                <%= award.issuedBy %>
+                                            </td>
+                                            <td class="action-buttons">
+                                                <a href="/admin/awards/<%= award._id %>/edit"
+                                                    class="btn btn-edit">Edit</a>
+                                                <form method="POST"
+                                                    action="/admin/awards/<%= award._id %>?_method=DELETE"
+                                                    style="display:inline;">
+                                                    <button type="submit" class="btn btn-delete"
+                                                        onclick="return confirm('Are you sure?')">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                            <% } else { %>
+                                <div class="empty-state">
+                                    <p class="empty-icon">🏆</p>
+                                    <p class="empty-text">No awards found</p>
+                                </div>
+                                <% } %>
+                    </div>
+                </section>
+        </div>
+
+        <%- include('../partials/footer') %>

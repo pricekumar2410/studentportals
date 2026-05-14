@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Flash Messages -->
+            <%- include('../partials/messages') %>
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">👥 Manage Students</h1>
+                    <div class="header-actions">
+                        <a href="/admin" class="btn btn-secondary">Back to Dashboard</a>
+                        <a href="/admin/students/new" class="btn btn-primary">➕ Add New Student</a>
+                    </div>
+                </div>
+
+                <!-- Students Table -->
+                <section class="students-section">
+                    <%- include('../partials/studentsTable', { students: students }) %>
+                </section>
+        </div>
+
+        <%- include('../partials/footer') %>

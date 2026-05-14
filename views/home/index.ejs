@@ -1,0 +1,67 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="home-container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1 class="hero-title">🎓 Student Awards Portal</h1>
+                    <p class="hero-subtitle">A comprehensive platform to manage and showcase student achievements</p>
+                </div>
+            </section>
+
+            <!-- Main Content -->
+            <section class="content-section">
+                <div class="cards-container">
+                    <!-- Student Portal Card -->
+                    <div class="card portal-card">
+                        <div class="card-icon">👨‍🎓</div>
+                        <h2 class="card-title">Student Portal</h2>
+                        <p class="card-description">
+                            View and search for student awards. Explore achievements across different classes and
+                            sections.
+                        </p>
+                        <a href="/student" class="card-button">View Awards</a>
+                    </div>
+
+                    <!-- Admin Portal Card -->
+                    <div class="card portal-card">
+                        <div class="card-icon">⚙️</div>
+                        <h2 class="card-title">Admin Portal</h2>
+                        <p class="card-description">
+                            Manage students and awards. Add, edit, and delete student records and award information.
+                        </p>
+                        <a href="/admin" class="card-button">Admin Dashboard</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features-section">
+                <h2 class="section-title">Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔍</span>
+                        <h3>Advanced Search</h3>
+                        <p>Search awards by student name, class, roll number, and more</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📊</span>
+                        <h3>Easy Management</h3>
+                        <p>Simple CRUD operations for students and awards</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <h3>Responsive Design</h3>
+                        <p>Works seamlessly on all devices - desktop, tablet, and mobile</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Real-time Updates</h3>
+                        <p>Instant search and filter results as you type</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <%- include('../partials/footer') %>

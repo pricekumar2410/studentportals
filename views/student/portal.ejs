@@ -1,0 +1,82 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="student-container">
+            <!-- Flash Messages -->
+            <%- include('../partials/messages') %>
+
+                <!-- Page Header -->
+                <div class="page-header">
+                    <h1 class="page-title">Students Awards Records</h1>
+                    <p class="page-subtitle">Search and view awards information</p>
+                </div>
+
+                <!-- Search Section -->
+                <section class="search-section">
+                    <div class="search-box">
+                        <form method="GET" action="/student/search" class="search-form">
+                            <!-- Main Search Input -->
+                            <div class="search-input-group">
+                                <input type="text" name="search"
+                                    placeholder="Search by student name, roll number, award name..."
+                                    class="search-input" value="<%= searchQuery %>">
+                                <button type="submit" class="search-button">🔍 Search</button>
+                            </div>
+
+                            <!-- Filter Options -->
+                            <div class="filter-group">
+                                <div class="filter-item">
+                                    <label for="class-filter">Filter by Class:</label>
+                                    <select name="class" id="class-filter" class="filter-select"
+                                        onchange="this.form.submit()">
+                                        <option value="">-- All Classes --</option>
+                                        <% classes.forEach((cls)=> { %>
+                                            <option value="<%= cls %>" <%=filterClass===cls ? 'selected' : '' %>>
+                                                <%= cls %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
+
+                                <div class="filter-item">
+                                    <label for="section-filter">Filter by Section:</label>
+                                    <select name="section" id="section-filter" class="filter-select"
+                                        onchange="this.form.submit()">
+                                        <option value="">-- All Sections --</option>
+                                        <% sections.forEach((sec)=> { %>
+                                            <option value="<%= sec %>" <%=filterSection===sec ? 'selected' : '' %>>
+                                                <%= sec %>
+                                            </option>
+                                            <% }); %>
+                                    </select>
+                                </div>
+
+                                <div class="filter-item">
+                                    <a href="/student" class="btn btn-secondary">Clear Filters</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- Awards Table -->
+                <section class="awards-section">
+                    <% const showActions=false; // Hide edit/delete for student view let awardsToDisplay=awards; %>
+                        <%- include('../partials/awardsTable', { awards: awardsToDisplay, showActions: showActions }) %>
+                </section>
+
+                <!-- Statistics -->
+                <section class="stats-section">
+                    <div class="stat-card">
+                        <span class="stat-icon">📋</span>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Awards</p>
+                            <p class="stat-value">
+                                <%= awards.length %>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+        </div>
+
+        <%- include('../partials/footer') %>

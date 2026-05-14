@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">✏️ Edit Student</h1>
+                <p class="page-subtitle">Update student information</p>
+            </div>
+
+            <!-- Form -->
+            <section class="form-section">
+                <form method="POST" action="/admin/students/<%= student._id %>?_method=PUT" class="form-card">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Student Name *</label>
+                        <input type="text" id="name" name="name" class="form-input"
+                            placeholder="Enter student full name" value="<%= student.name %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="class" class="form-label">Class *</label>
+                        <input type="text" id="class" name="class" class="form-input" placeholder="e.g., 10-A, 12-B"
+                            value="<%= student.class %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rollNumber" class="form-label">Roll Number *</label>
+                        <input type="text" id="rollNumber" name="rollNumber" class="form-input" placeholder="e.g., 001"
+                            value="<%= student.rollNumber %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="section" class="form-label">Section *</label>
+                        <input type="text" id="section" name="section" class="form-input" placeholder="e.g., A, B, C"
+                            value="<%= student.section %>" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Update Student</button>
+                        <a href="/admin/students" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <%- include('../partials/footer') %>

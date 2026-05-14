@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">➕ Add New Award</h1>
+                <p class="page-subtitle">Create a new award record</p>
+            </div>
+
+            <!-- Form -->
+            <section class="form-section">
+                <form method="POST" action="/admin/awards" class="form-card">
+                    <div class="form-group">
+                        <label for="awardName" class="form-label">Award Name *</label>
+                        <input type="text" id="awardName" name="awardName" class="form-input"
+                            placeholder="e.g., Best Academic Achievement" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="student" class="form-label">Student *</label>
+                        <select id="student" name="student" class="form-input" required>
+                            <option value="">-- Select a Student --</option>
+                            <% students.forEach((student)=> { %>
+                                <option value="<%= student._id %>">
+                                    <%= student.name %> (<%= student.rollNumber %> - <%= student.class %>)
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issuedDate" class="form-label">Issued Date *</label>
+                        <input type="date" id="issuedDate" name="issuedDate" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issuedBy" class="form-label">Issued By *</label>
+                        <input type="text" id="issuedBy" name="issuedBy" class="form-input"
+                            placeholder="e.g., Principal, Director" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Award</button>
+                        <a href="/admin/awards" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <%- include('../partials/footer') %>

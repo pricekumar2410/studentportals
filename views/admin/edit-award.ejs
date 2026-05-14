@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">✏️ Edit Award</h1>
+                <p class="page-subtitle">Update award information</p>
+            </div>
+
+            <!-- Form -->
+            <section class="form-section">
+                <form method="POST" action="/admin/awards/<%= award._id %>?_method=PUT" class="form-card">
+                    <div class="form-group">
+                        <label for="awardName" class="form-label">Award Name *</label>
+                        <input type="text" id="awardName" name="awardName" class="form-input"
+                            placeholder="e.g., Best Academic Achievement" value="<%= award.awardName %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="student" class="form-label">Student *</label>
+                        <select id="student" name="student" class="form-input" required>
+                            <option value="">-- Select a Student --</option>
+                            <% students.forEach((student)=> { %>
+                                <option value="<%= student._id %>"
+                                    <%=award.student._id.toString()===student._id.toString() ? 'selected' : '' %>>
+                                    <%= student.name %> (<%= student.rollNumber %> - <%= student.class %>)
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issuedDate" class="form-label">Issued Date *</label>
+                        <input type="date" id="issuedDate" name="issuedDate" class="form-input"
+                            value="<%= award.issuedDate.toISOString().split('T')[0] %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="issuedBy" class="form-label">Issued By *</label>
+                        <input type="text" id="issuedBy" name="issuedBy" class="form-input"
+                            placeholder="e.g., Principal, Director" value="<%= award.issuedBy %>" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Update Award</button>
+                        <a href="/admin/awards" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <%- include('../partials/footer') %>

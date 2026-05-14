@@ -1,0 +1,113 @@
+<%- include('../partials/header') %>
+    <%- include('../partials/navbar') %>
+
+        <div class="admin-container">
+            <!-- Flash Messages -->
+            <%- include('../partials/messages') %>
+
+                <!-- Dashboard Header -->
+                <div class="page-header">
+                    <h1 class="page-title">⚙️ Admin Dashboard</h1>
+                    <p class="page-subtitle">Manage students and awards</p>
+                </div>
+
+                <!-- Statistics Cards -->
+                <section class="stats-section">
+                    <div class="stat-card primary">
+                        <span class="stat-icon">👥</span>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Students</p>
+                            <p class="stat-value">
+                                <%= totalStudents %>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card success">
+                        <span class="stat-icon">🏆</span>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Awards</p>
+                            <p class="stat-value">
+                                <%= totalAwards %>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card info">
+                        <span class="stat-icon">📊</span>
+                        <div class="stat-content">
+                            <p class="stat-label">Recent Awards</p>
+                            <p class="stat-value">
+                                <%= recentAwards.length %>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Actions -->
+                <section class="quick-actions">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="action-buttons-grid">
+                        <a href="/admin/students/new" class="action-button add-button">
+                            <span class="button-icon">➕</span>
+                            Add New Student
+                        </a>
+                        <a href="/admin/students" class="action-button view-button">
+                            <span class="button-icon">👥</span>
+                            Manage Students
+                        </a>
+                        <a href="/admin/awards/new" class="action-button add-button">
+                            <span class="button-icon">➕</span>
+                            Add New Award
+                        </a>
+                        <a href="/admin/awards" class="action-button view-button">
+                            <span class="button-icon">🏆</span>
+                            Manage Awards
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Recent Awards Section -->
+                <section class="recent-section">
+                    <h2 class="section-title">Recent Awards</h2>
+                    <% if (recentAwards && recentAwards.length> 0) { %>
+                        <div class="table-container">
+                            <table class="awards-table compact">
+                                <thead>
+                                    <tr>
+                                        <th>Student Name</th>
+                                        <th>Award Name</th>
+                                        <th>Issued Date</th>
+                                        <th>Issued By</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% recentAwards.forEach((award)=> { %>
+                                        <tr class="table-row">
+                                            <td><strong>
+                                                    <%= award.student.name %>
+                                                </strong></td>
+                                            <td><span class="award-badge">
+                                                    <%= award.awardName %>
+                                                </span></td>
+                                            <td>
+                                                <%= new Date(award.issuedDate).toLocaleDateString() %>
+                                            </td>
+                                            <td>
+                                                <%= award.issuedBy %>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% } else { %>
+                            <div class="empty-state">
+                                <p class="empty-icon">📋</p>
+                                <p class="empty-text">No recent awards</p>
+                            </div>
+                            <% } %>
+                </section>
+        </div>
+
+        <%- include('../partials/footer') %>
